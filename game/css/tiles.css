@@ -1,0 +1,86 @@
+/*
+	CSS for tile types - This will be appended for new tiles
+
+	Usage example: class="tile grass"
+*/
+
+.selected-tile {
+	background: url(../images/tiles/selected_tile.png) no-repeat top left;
+	z-index: 999;
+}
+
+.void {
+	background: url(../images/tiles/void.png) no-repeat top left;
+}
+
+.grass {
+	background: url(../images/tiles/grass.png) no-repeat top left;
+}
+
+.dirt {
+	background: url(../images/tiles/dirt.png) no-repeat top left;
+}
+
+.cave {
+	background: url(../images/tiles/cave.png) no-repeat top left;
+}
+
+.water {
+	background: url(../images/tiles/water.png) no-repeat top left;
+}
+
+.water_top {
+	background: url(../images/tiles/water_top.png) no-repeat top left;
+}
+
+.water_left {
+	background: url(../images/tiles/water_left.png) no-repeat top left;
+}
+
+.water_top_left {
+	background: url(../images/tiles/water_top_left.png) no-repeat top left;
+}
+
+.wood {
+	background: url(../images/tiles/wood.png) no-repeat top left;
+}
+
+.sand {
+	background: url(../images/tiles/sand.png) no-repeat top left;
+}
+
+.tiles {
+	background: url(../images/tiles/tiles.png) no-repeat top left;
+}
+
+.metal {
+	background: url(../images/tiles/metal.png) no-repeat top left;
+}
+
+.lava {
+	background: url(../images/tiles/lava.png) no-repeat top left;
+}
+
+.solid_stone {
+	background: url(../images/tiles/solid_stone.png) no-repeat top left;
+}
+
+.grass_messy {
+	background: url(../images/tiles/grass_messy.png) no-repeat top left;
+}
+
+.portal {
+	background: url(../images/tiles/portal.png) no-repeat top left;
+}
+
+.ladder_metal {
+	background: url(../images/tiles/ladder_metal.png) no-repeat top left;
+}
+
+.well {
+	background: url(../images/tiles/well.png) no-repeat top left;
+}
+
+.fence {
+	background: url(../images/tiles/fence.png) no-repeat top left;
+}

@@ -1,0 +1,19 @@
+.tile {
+	width: 128px;
+	height: 195px;
+	position: absolute;
+}
+
+.player {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	z-index: 2;
+}
+
+.sprite {
+	width: 128px;
+	height: 105px;
+	position: absolute;
+	z-index: 3;
+}

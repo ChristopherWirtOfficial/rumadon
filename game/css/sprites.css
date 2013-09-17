@@ -1,0 +1,9 @@
+/*
+	CSS for sprite types - This will be appended for new sprites
+
+	Usage example: class="sprite building"
+*/
+
+.building {
+	background: url(../images/sprites/building.png) no-repeat top left;
+}

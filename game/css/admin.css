@@ -1,0 +1,49 @@
+#admin-panel {
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	background: #fff;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+#admin-panel #admin-tool-panel {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-indent: 20px;
+	background: #eee;
+}
+
+#admin-panel #admin-tool-panel, #admin-panel #admin-tool-panel a {
+	color: #444;
+}
+
+#admin-panel #admin-tool-panel a.selected-tool {
+	font-weight: bold;
+}
+
+#admin-panel #admin-tile-panel {
+	width: 100%;
+	height: 110px;
+}
+
+#admin-panel #admin-tile-panel img {
+	height: 70px;
+	margin: 10px 0px;
+	opacity: 0.8;
+}
+
+#admin-panel #admin-tile-panel img.selected-admin-tile {
+	opacity: 1.0 !important;
+}
+
+#admin-tool-panel-left {
+	float: left;
+}
+
+#admin-tool-panel-right {
+	float: right;
+	margin-right: 10px;
+}

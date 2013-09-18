@@ -36,15 +36,25 @@ main * {
   -webkit-transform-style: preserve-3d;
 }
 plane {
+    -webkit-transition: -webkit-transform 1s;
   -webkit-transform: rotateX(54.7364deg) rotateZ(45deg) translateX(0px);
+}
+#map {
+    white-space: nowrap;
+    font-size: 0;
+}
+.col {
+    display: inline-block;
+    width: 100px;
 }
 tile {
   -webkit-transition: -webkit-transform 1s 3.5s, background-color 1s 3.5s;
   -webkit-transform-origin: top left;
-  position: absolute;
+    display: block;  
   width: 100px;
   height: 100px;
   background-color: rgba(0,0,255,.0);
+  box-shadow: inset 0 0 10px 5px blue;
 }
 tile:hover {
   box-shadow: inset 0 0 30px 5px orange;
@@ -52,25 +62,145 @@ tile:hover {
 </style>
 </head>
 <body>
-  <main>
-    <plane id="map">
-      <tile>
-          
-      </tile>
-      <tile>
-          
-      </tile>
-      <tile>
-          
-      </tile>
-      <tile>
-          
-      </tile>
-    </plane>
-  </main>
+    <main>
+        <plane id="map">
+            <div class="col">
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+            </div>
+            <div class="col">
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+            </div>
+            <div class="col">
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+            </div>
+            <div class="col">
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+            </div>
+            <div class="col">
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+            </div>
+            <div class="col">
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+                <tile>
+                </tile>
+            </div>
+        </plane>
+    </main>
 <script>
-function moveCamera(x, y) {
-    document.getElementById('map').style["-webkit-transform"] = "rotateX(54.7364deg) rotateZ(45deg) translateX(" + x + "px) translateY(" + y + "px)";
+function moveCamera(x, y, z) {
+    document.getElementById('map').style["-webkit-transform"] = "rotateX(54.7364deg) rotateZ(45deg) translateX(" + (-x) + "px) translateY(" + (-y) + "px) translateZ(" + (-(z||0)) + "px)";
 }
 </script>
 </body>

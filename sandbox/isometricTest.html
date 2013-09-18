@@ -12,15 +12,18 @@
 <style id="jsbin-css">
 main {
   position: absolute;
-  height: 100vh;
-  width: 100vw;
+  top: 50%;
+  left: 50%;
 }
 body {
   margin: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 plane {
-  -webkit-transition: all 1s 2s;
   position: absolute;
   width: 100px;
   height: 100px;
@@ -29,61 +32,46 @@ plane {
   -webkit-transform-origin: top left;
   background-image: url(http://s10.postimg.org/6r4ni3091/xy100.png?noCache=1379462853);
 }
-main, main * {
+main * {
   -webkit-transform-style: preserve-3d;
 }
-.delay plane {
-  -webkit-transform: rotateX(54.7364deg) rotateZ(45deg) translateX(200px);
+plane {
+  -webkit-transform: rotateX(54.7364deg) rotateZ(45deg) translateX(0px);
 }
-box {
+tile {
   -webkit-transition: -webkit-transform 1s 3.5s, background-color 1s 3.5s;
-  -webkit-transform-origin: bottom left;
+  -webkit-transform-origin: top left;
   position: absolute;
   width: 100px;
   height: 100px;
   background-color: rgba(0,0,255,.0);
 }
-.delay box:nth-child(1) {
-  -webkit-transform:  rotateY(-90deg);
-  background-color: rgba(50,50,255,1);
-}
-.delay box:nth-child(2) {
-  -webkit-transform:  rotateX(-90deg);
-  background-color: rgba(0,0,200,1);-webkit-transition: -webkit-transform 1s 4.5s, background-color 1s 4.5s;
-}
-
-.delay box:nth-child(3) {
-  -webkit-transform-origin: top right;
-  -webkit-transform:  rotateY(90deg);
-  background-color: rgba(50,50,255,1);
-}
-
-.delay box:nth-child(4) {
-  -webkit-transform-origin: top right;
-  -webkit-transform:  rotateX(90deg);
-  background-color: rgba(0,0,200,1);-webkit-transition: -webkit-transform 1s 4.5s, background-color 1s 4.5s;
-}
-box:hover {
+tile:hover {
   box-shadow: inset 0 0 30px 5px orange;
 }
 </style>
 </head>
 <body>
   <main>
-    <plane>
-      <box>
-      </box>
-      <box>
-      </box>
-      <box>
-      </box>
-      <box>
-      </box>
+    <plane id="map">
+      <tile>
+          
+      </tile>
+      <tile>
+          
+      </tile>
+      <tile>
+          
+      </tile>
+      <tile>
+          
+      </tile>
     </plane>
   </main>
 <script>
-setTimeout(function() {document.body.classList.add('delay');
-                       setTimeout(function(){document.body.scrollLeft = 30;},3000);},10);
+function moveCamera(x, y) {
+    document.getElementById('map').style["-webkit-transform"] = "rotateX(54.7364deg) rotateZ(45deg) translateX(" + x + "px) translateY(" + y + "px)";
+}
 </script>
 </body>
 </html>

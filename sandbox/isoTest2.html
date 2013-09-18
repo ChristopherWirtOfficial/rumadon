@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html>
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/AYitoHe/2/edit
+-->
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<style id="jsbin-css">
+body {
+  margin: 0;
+  pointer-events: none;
+}
+
+body > * {
+    pointer-events: all;
+}
+
+html, body {
+    height: 100%;
+}
+viewport {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+plane {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  overflow: visible;
+  background-color: rgba(0, 255, 0, .2);
+  -webkit-transform-origin: top left;
+}
+origin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateZ(10000px);
+}
+origin * {
+  -webkit-transform-style: preserve-3d;
+}
+plane {
+    -webkit-transition: -webkit-transform 1s;
+  -webkit-transform: rotateX(54.7364deg) rotateZ(45deg) translateX(0px);
+}
+#map {
+    white-space: nowrap;
+    font-size: 0;
+}
+.col {
+    display: inline-block;
+    width: 100px;
+}
+tile {
+    position: relative;
+  -webkit-transition: -webkit-transform 1s 3.5s, background-color 1s 3.5s;
+  -webkit-transform-origin: top left;
+    display: block;  
+  width: 100px;
+  height: 100px;
+    background-color: rgb(170,240,120);
+}
+.col:nth-child(odd) tile:nth-child(odd),
+.col:nth-child(even) tile:nth-child(even) {
+    background-color: rgb(150,255,100);
+}
+tile:hover {
+  box-shadow: inset 0 0 30px 5px orange;
+}
+side {
+    background-color: #333;
+    display: block;
+    width: 100%;
+    position: absolute;
+}
+side.north,
+side.south {
+    background-color: #444;
+}
+side.north {
+    -webkit-transform-origin: top left;
+    -webkit-transform: rotateX(-90deg);
+    top: 0;
+}
+side.south {
+    -webkit-transform-origin: bottom right;
+    -webkit-transform: rotateX(90deg);
+    bottom: 0;
+}
+side.west {
+    -webkit-transform-origin: top left;
+    -webkit-transform: rotateX(-90deg) rotateY(-90deg);
+    top: 0;
+}
+side.east {
+    -webkit-transform-origin: bottom right;
+    -webkit-transform: rotateX(90deg) rotateY(90deg);
+    bottom: 0;
+}
+</style>
+</head>
+<body onkeydown="keyCatch(event)">
+    <viewport>
+        <origin>
+            <plane id="map">
+                <div class="col">
+                    <tile style="-webkit-transform: translateZ(20px);" id="origin">
+                        <side class="north" style="height: 20px;"></side>
+                        <side class="south" style="height: 20px;"></side>
+                        <side class="east" style="height: 20px;"></side>
+                        <side class="west" style="height: 20px;"></side>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+            </plane>
+        </origin>
+    </viewport>
+<script>
+	var ISO_ANGLE = 54.7364;
+	document.onclick = function(evt) {
+    	var evt=window.event || evt; // window.event for IE
+    	if (!evt.target) evt.target=evt.srcElement; // extend target property for IE
+		//alert(evt.target); // target is clicked
+  	}
+	
+	function Camera(x,y,z,angle,pitch) {
+		var self = this;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.angle = angle;
+		this.pitch = pitch;
+		this.moveA = function(x, y, z,angle,pitch) {
+			self.x = (x == undefined ? self.x : x);
+			self.y = (y == undefined ? self.y : y);
+			self.z = (z == undefined ? self.z : z);
+			self.angle = (angle == undefined ? self.angle : angle);
+			self.pitch = (pitch == undefined ? self.pitch : pitch);
+			document.getElementById('map').style["-webkit-transform"] = "rotateX("+self.pitch+"deg) rotateZ("+self.angle+"deg) translateX(" + (-self.x) + "px) translateY(" + (-self.y) + "px) translateZ(" + (-(self.z)) + "px)";
+		}
+		this.moveR = function(x,y,z) {
+			self.moveA(self.x+x,self.y+y,self.z+z);
+			
+		}
+		this.move = function(x,y,z) {
+			self.moveR(y*Math.sin(Math.PI*Camera.angle/180)+x*Math.sin(Math.PI*Camera.angle/180),y*Math.cos(Math.PI*Camera.angle/180)+x*Math.cos(Math.PI*Camera.angle/180),0);
+		}
+	}
+	var Camera = new Camera(500,500,500,45,ISO_ANGLE);
+	
+function keyCatch(keyEvent) {
+	//If they pressed left
+	delta = 100
+	if(keyEvent.keyCode == 37) {
+		Camera.move(-delta,0,0);
+	}
+
+	//If they pressed up
+	if(keyEvent.keyCode == 38) {
+		Camera.move(0,-delta,0);
+	}
+
+	//If they pressed right
+	if(keyEvent.keyCode == 39) {
+		Camera.move(delta,0,0);
+	}
+
+	//If they pressed down
+	if(keyEvent.keyCode == 40) {
+		Camera.move(0,delta,0);
+	}
+}
+</script>
+</body>
+</html>

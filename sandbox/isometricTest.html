@@ -10,12 +10,13 @@
 <title>JS Bin</title>
 
 <style id="jsbin-css">
-body {
+body, viewport {
   margin: 0;
   pointer-events: none;
 }
 
-body > * {
+body > *:not(viewport),
+viewport > * {
     pointer-events: all;
 }
 
@@ -23,6 +24,7 @@ html, body {
     height: 100%;
 }
 viewport {
+    pointer-events: none;
     overflow: hidden;
     position: absolute;
     width: 100%;
@@ -249,8 +251,8 @@ side.east {
         </origin>
     </viewport>
 <script>
-function moveCamera(x, y, z) {
-    document.getElementById('map').style["-webkit-transform"] = "rotateX(54.7364deg) rotateZ(45deg) translateX(" + (-x) + "px) translateY(" + (-y) + "px) translateZ(" + (-(z||0)) + "px)";
+function moveCamera(x, y, z, angle) {
+    document.getElementById('map').style["-webkit-transform"] = "rotateX(54.7364deg) rotateZ(" + ((angle == undefined) ? 45 : angle) + "deg) translateX(" + (-x) + "px) translateY(" + (-y) + "px) translateZ(" + (-(z||0)) + "px)";
 }
 </script>
 </body>

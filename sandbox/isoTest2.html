@@ -258,21 +258,68 @@ side.east {
 	
 	function Camera(x,y,z,angle,pitch) {
 		var self = this;
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.angle = angle;
-		this.pitch = pitch;
-		this.moveA = function(x, y, z,angle,pitch) {
-			self.x = (x == undefined ? self.x : x);
-			self.y = (y == undefined ? self.y : y);
-			self.z = (z == undefined ? self.z : z);
-			self.angle = (angle == undefined ? self.angle : angle);
-			self.pitch = (pitch == undefined ? self.pitch : pitch);
-			document.getElementById('map').style["-webkit-transform"] = "rotateX("+self.pitch+"deg) rotateZ("+self.angle+"deg) translateX(" + (-self.x) + "px) translateY(" + (-self.y) + "px) translateZ(" + (-(self.z)) + "px)";
+		 
+		
+		this.xVal = x;
+		this.yVal = y;
+		this.zVal = z;
+		this.angleVal = angle;
+		this.pitchVal = pitch;
+		
+		this.update = function() {
+			console.log("Camera Updated!");
+			return document.getElementById('map').style["-webkit-transform"] = "rotateX("+self.pitchVal+"deg) rotateZ("+self.angleVal+"deg) translateX(" + (-self.xVal) + "px) translateY(" + (-self.yVal) + "px) translateZ(" + (-(self.zVal)) + "px)";
+			
 		}
+		var u = this.update;
+		this.moveA = function(x, y, z,angle,pitch) {
+			self.xVal = (x == undefined ? self.xVal : x);
+			self.yVal = (y == undefined ? self.yVal : y);
+			self.zVal = (z == undefined ? self.zVal : z);
+			self.angleVal = (angle == undefined ? self.angle : angle);
+			self.pitchVal = (pitch == undefined ? self.pitch : pitch);
+			u();
+			//document.getElementById('map').style["-webkit-transform"] = "rotateX("+self.pitch+"deg) rotateZ("+self.angle+"deg) translateX(" + (-self.x) + "px) translateY(" + (-self.y) + "px) translateZ(" + (-(self.z)) + "px)";
+					}
+		
+		
+		Object.defineProperty(this, "x", 
+			{get: function(){ return xVal; },
+			set: function(newValue) {
+				self.xVal=newValue;
+		 		u();
+			},
+			 configurable : true});
+		Object.defineProperty(this, "y", 
+			{get: function(){ return yVal; },
+			set: function(newValue) {
+				self.yVal=newValue;
+		 		u();
+			},
+			 configurable : true});
+		Object.defineProperty(this, "z", 
+			{get: function(){ return zVal; }, 
+			set: function(newValue) {
+				self.zVal=newValue;
+		 		u();
+			},
+			 configurable : true});
+		Object.defineProperty(this, "angle", 
+			{get: function(){ return angleVal; },
+			set: function(newValue) {
+				self.angleVal=newValue;
+		 		u();
+			},
+			 configurable : true});
+		Object.defineProperty(this, "pitch", 
+			{get: function(){ return pitchVal; },
+			set: function(newValue) {
+				self.pitchVal=newValue;
+		 		u();
+			},
+			 configurable : true});
 		this.moveR = function(x,y,z) {
-			self.moveA(self.x+x,self.y+y,self.z+z);
+			self.moveA(self.xVal+x,self.yVal+y,self.zVal+z);
 			
 		}
 		this.move = function(x,y,z) {

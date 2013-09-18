@@ -15,9 +15,9 @@ function centerView(playerUsername, doAnimation) {
 	//Then figure out where center on is
 	var centerOffsetLeft = playerOffsetLeft - (viewportWidth/2) + (playerWidth/2);
 	var centerOffsetTop = playerOffsetTop - (viewportHeight/2) + (playerHeight/2);
-
+	
 	if(doAnimation) {
-		$("#contain-map").stop().animate({scrollLeft: centerOffsetLeft, scrollTop: centerOffsetTop}, 150);
+		$("#contain-map").stop().animate({scrollLeft: centerOffsetLeft, scrollTop: centerOffsetTop}, 1);
 	} else {
 		//and scroll the view to there
 		$("#contain-map").scrollLeft(centerOffsetLeft);
@@ -37,7 +37,7 @@ function walkCharacter(direction, username, doQueuing) {
 	//Check the character isn't already walking
 	if(playerObj.walking == true) {
 		if(doQueuing) {
-			setTimeout('walkCharacter("' + direction + '", "' + username + '", true)', 100);
+			setTimeout('walkCharacter("' + direction + '", "' + username + '", true)', 10);
 		}
 		return;
 	}

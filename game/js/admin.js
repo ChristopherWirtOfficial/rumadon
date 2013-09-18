@@ -23,7 +23,9 @@ function initAdmin() {
 	//Setup the save button
 	$("#admin-save").click(function() {
 		if(confirm("Are you sure you wish to save? This can not be undone")) {
-			//Save here
+			$.getJSON("actions/map/save", function(data) { 
+				
+			});
 		}
 	});
 }

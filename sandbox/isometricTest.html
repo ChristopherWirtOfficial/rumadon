@@ -10,19 +10,24 @@
 <title>JS Bin</title>
 
 <style id="jsbin-css">
-main {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
 body {
   margin: 0;
+  pointer-events: none;
+}
+
+body > * {
+    pointer-events: all;
 }
 
 html, body {
     height: 100%;
 }
-
+viewport {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 plane {
   position: absolute;
   width: 100px;
@@ -30,9 +35,14 @@ plane {
   overflow: visible;
   background-color: rgba(0, 255, 0, .2);
   -webkit-transform-origin: top left;
-  background-image: url(http://s10.postimg.org/6r4ni3091/xy100.png?noCache=1379462853);
 }
-main * {
+origin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateZ(10000px);
+}
+origin * {
   -webkit-transform-style: preserve-3d;
 }
 plane {
@@ -48,156 +58,196 @@ plane {
     width: 100px;
 }
 tile {
+    position: relative;
   -webkit-transition: -webkit-transform 1s 3.5s, background-color 1s 3.5s;
   -webkit-transform-origin: top left;
     display: block;  
   width: 100px;
   height: 100px;
-  background-color: rgba(0,0,255,.0);
-  box-shadow: inset 0 0 10px 5px blue;
+    background-color: rgb(170,240,120);
+}
+.col:nth-child(odd) tile:nth-child(odd),
+.col:nth-child(even) tile:nth-child(even) {
+    background-color: rgb(150,255,100);
 }
 tile:hover {
   box-shadow: inset 0 0 30px 5px orange;
 }
+side {
+    background-color: #333;
+    display: block;
+    width: 100%;
+    position: absolute;
+}
+side.north,
+side.south {
+    background-color: #444;
+}
+side.north {
+    -webkit-transform-origin: top left;
+    -webkit-transform: rotateX(-90deg);
+    top: 0;
+}
+side.south {
+    -webkit-transform-origin: bottom right;
+    -webkit-transform: rotateX(90deg);
+    bottom: 0;
+}
+side.west {
+    -webkit-transform-origin: top left;
+    -webkit-transform: rotateX(-90deg) rotateY(-90deg);
+    top: 0;
+}
+side.east {
+    -webkit-transform-origin: bottom right;
+    -webkit-transform: rotateX(90deg) rotateY(90deg);
+    bottom: 0;
+}
 </style>
 </head>
 <body>
-    <main>
-        <plane id="map">
-            <div class="col">
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-            </div>
-            <div class="col">
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-            </div>
-            <div class="col">
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-            </div>
-            <div class="col">
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-            </div>
-            <div class="col">
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-            </div>
-            <div class="col">
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-                <tile>
-                </tile>
-            </div>
-        </plane>
-    </main>
+    <viewport>
+        <origin>
+            <plane id="map">
+                <div class="col">
+                    <tile style="-webkit-transform: translateZ(20px);">
+                        <side class="north" style="height: 20px;"></side>
+                        <side class="south" style="height: 20px;"></side>
+                        <side class="east" style="height: 20px;"></side>
+                        <side class="west" style="height: 20px;"></side>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+                <div class="col">
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                    <tile>
+                    </tile>
+                </div>
+            </plane>
+        </origin>
+    </viewport>
 <script>
 function moveCamera(x, y, z) {
     document.getElementById('map').style["-webkit-transform"] = "rotateX(54.7364deg) rotateZ(45deg) translateX(" + (-x) + "px) translateY(" + (-y) + "px) translateZ(" + (-(z||0)) + "px)";

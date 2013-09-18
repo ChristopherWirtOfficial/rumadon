@@ -46,7 +46,7 @@ origin * {
   -webkit-transform-style: preserve-3d;
 }
 plane {
-    -webkit-transition: -webkit-transform 1s;
+    -webkit-transition: -webkit-transform .1s;
   -webkit-transform: rotateX(54.7364deg) rotateZ(45deg) translateX(0px);
 }
 #map {
@@ -276,7 +276,12 @@ side.east {
 			
 		}
 		this.move = function(x,y,z) {
-			self.moveR(y*Math.sin(Math.PI*Camera.angle/180)+x*Math.sin(Math.PI*Camera.angle/180),y*Math.cos(Math.PI*Camera.angle/180)+x*Math.cos(Math.PI*Camera.angle/180),0);
+		    var a = -Math.PI/180*self.angle;
+		    var p = Math.PI/180*self.pitch;
+		    var cos = Math.cos;
+		    var sin = Math.sin;
+		    var sec = function(i) {return 1/Math.cos(i)};
+			self.moveR(x*Math.cos(a) - y*(1/Math.cos(p))* Math.sin(a), y * Math.cos(a) * (1/Math.cos(p)) + x * Math.sin(a),0);
 		}
 	}
 	var Camera = new Camera(500,500,500,45,ISO_ANGLE);

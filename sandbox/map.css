@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  pointer-events: none;
+}
+
+body > *:not(viewport),
+viewport > * {
+    pointer-events: all;
+}
+
+html, body {
+    height: 100%;
+}
+viewport {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+plane {
+ 
+}
+origin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateZ(10000px);
+}
+origin * {
+  -webkit-transform-style: preserve-3d;
+}
+plane {
+position: absolute;
+  width: 100px;
+  height: 100px;
+  overflow: visible;
+  background-color: rgba(0, 255, 0, .2);
+  -webkit-transform-origin: top left;
+  -webkit-transition: -webkit-transform .1s;
+  -webkit-transform: rotateX(54.7364deg) rotateZ(45deg) translateX(0px);
+}
+#map {
+    white-space: nowrap;
+    font-size: 0;
+}
+.col {
+	vertical-align: top;
+    display: inline-block;
+    width: 100px;
+}
+tile {
+	
+    position: relative;
+  -webkit-transform-origin: top left;
+    display: block;
+  width: 100px;
+  height: 100px;
+    background-color: rgb(170,240,120);
+}
+.col:nth-child(odd) tile:nth-child(odd),
+.col:nth-child(even) tile:nth-child(even) {
+    background-color: rgb(150,255,100);
+}
+tile:hover {
+  box-shadow: inset 0 0 30px 5px orange;
+}
+side {
+    background-color: #333;
+    display: block;
+    width: 100%;
+    position: absolute;
+}
+side.north,
+side.south {
+    background-color: #444;
+}
+side.north {
+    -webkit-transform-origin: top left;
+    -webkit-transform: rotateX(-90deg);
+    top: 0;
+}
+side.south {
+    -webkit-transform-origin: bottom right;
+    -webkit-transform: rotateX(90deg);
+    bottom: 0;
+}
+side.west {
+    -webkit-transform-origin: top left;
+    -webkit-transform: rotateX(-90deg) rotateY(-90deg);
+    top: 0;
+}
+side.east {
+    -webkit-transform-origin: bottom right;
+    -webkit-transform: rotateX(90deg) rotateY(90deg);
+    bottom: 0;
+}

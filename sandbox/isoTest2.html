@@ -60,9 +60,8 @@ plane {
 }
 tile {
     position: relative;
-  -webkit-transition: -webkit-transform 1s 3.5s, background-color 1s 3.5s;
   -webkit-transform-origin: top left;
-    display: block;  
+    display: block;
   width: 100px;
   height: 100px;
     background-color: rgb(170,240,120);
@@ -251,11 +250,11 @@ side.east {
     </viewport>
 <script>
 	var ISO_ANGLE = 54.7364;
-	document.onclick = function(evt) {
-    	var evt=window.event || evt; // window.event for IE
-    	if (!evt.target) evt.target=evt.srcElement; // extend target property for IE
-		//alert(evt.target); // target is clicked
-  	}
+	window.addEventListener('click', function(e) {
+		if (e.target.tagName == "TILE") {
+		    e.target.style["background-color"] = "red";
+		}
+  	});
 	
 	function Camera(x,y,z,angle,pitch) {
 		var self = this;

@@ -15,7 +15,8 @@ body {
   pointer-events: none;
 }
 
-body > * {
+body > *:not(viewport),
+viewport > * {
     pointer-events: all;
 }
 

@@ -267,9 +267,7 @@ side.east {
 		this.pitchVal = pitch;
 		
 		this.update = function() {
-			console.log("Camera Updated!");
-			return document.getElementById('map').style["-webkit-transform"] = "rotateX("+self.pitchVal+"deg) rotateZ("+self.angleVal+"deg) translateX(" + (-self.xVal) + "px) translateY(" + (-self.yVal) + "px) translateZ(" + (-(self.zVal)) + "px)";
-			
+			document.getElementById('map').style["-webkit-transform"] = "rotateX("+self.pitchVal+"deg) rotateZ("+self.angleVal+"deg) translateX(" + (-self.xVal) + "px) translateY(" + (-self.yVal) + "px) translateZ(" + (-(self.zVal)) + "px)";
 		}
 		var u = this.update;
 		this.moveA = function(x, y, z,angle,pitch) {
@@ -284,35 +282,35 @@ side.east {
 		
 		
 		Object.defineProperty(this, "x", 
-			{get: function(){ return xVal; },
+			{get: function(){ return self.xVal; },
 			set: function(newValue) {
 				self.xVal=newValue;
 		 		u();
 			},
 			 configurable : true});
 		Object.defineProperty(this, "y", 
-			{get: function(){ return yVal; },
+			{get: function(){ return self.yVal; },
 			set: function(newValue) {
 				self.yVal=newValue;
 		 		u();
 			},
 			 configurable : true});
 		Object.defineProperty(this, "z", 
-			{get: function(){ return zVal; }, 
+			{get: function(){ return self.zVal; }, 
 			set: function(newValue) {
 				self.zVal=newValue;
 		 		u();
 			},
 			 configurable : true});
 		Object.defineProperty(this, "angle", 
-			{get: function(){ return angleVal; },
+			{get: function(){ return self.angleVal; },
 			set: function(newValue) {
 				self.angleVal=newValue;
 		 		u();
 			},
 			 configurable : true});
 		Object.defineProperty(this, "pitch", 
-			{get: function(){ return pitchVal; },
+			{get: function(){ return self.pitchVal; },
 			set: function(newValue) {
 				self.pitchVal=newValue;
 		 		u();
@@ -323,11 +321,8 @@ side.east {
 			
 		}
 		this.move = function(x,y,z) {
-		    var a = -Math.PI/180*self.angle;
-		    var p = Math.PI/180*self.pitch;
-		    var cos = Math.cos;
-		    var sin = Math.sin;
-		    var sec = function(i) {return 1/Math.cos(i)};
+		    var a = -Math.PI/180*self.angleVal;
+		    var p = Math.PI/180*self.pitchVal;
 			self.moveR(x*Math.cos(a) - y*(1/Math.cos(p))* Math.sin(a), y * Math.cos(a) * (1/Math.cos(p)) + x * Math.sin(a),0);
 		}
 	}
